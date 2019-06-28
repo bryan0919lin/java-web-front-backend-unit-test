@@ -14,6 +14,9 @@ require.config({
         axios: [
             'lib/axios.min'
         ],
+        'bootstrap-native': [
+            'lib/bootstrap-native-v4'
+        ],
         'axios-mock-adapter': [
             'lib/axios-mock-adapter.min'
         ]

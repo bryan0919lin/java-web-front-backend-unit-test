@@ -13,44 +13,25 @@
 	var indexVm = new Vue({
 		el : '#index',
 		data : {
-			products : [ {
-				id : 1,
-				img : 'img/portfolio/cabin.png',
-				title : 'Very Cool',
-				detail : 'A very very long detail that you may be scared, ha ha ha.'
-			}, {
-				id : 2,
-				img : 'img/portfolio/cake.png',
-				title : 'Very Cool 2',
-				detail : 'A very very long detail that you may be scared, ha ha ha 2.'
-			}, {
-				id : 3,
-				img : 'img/portfolio/circus.png',
-				title : 'Very Cool 3',
-				detail : 'A very very long detail that you may be scared, ha ha ha 3.'
-			}, {
-				id : 4,
-				img : 'img/portfolio/game.png',
-				title : 'Very Cool 4',
-				detail : 'A very very long detail that you may be scared, ha ha ha 4.'
-			}, {
-				id : 5,
-				img : 'img/portfolio/safe.png',
-				title : 'Very Cool 5',
-				detail : 'A very very long detail that you may be scared, ha ha ha 5.'
-			}, {
-				id : 6,
-				img : 'img/portfolio/submarine.png',
-				title : 'Very Cool 6',
-				detail : 'A very very long detail that you may be scared, ha ha ha 6.'
-			} ],
+			products: []
 		},
 		methods : {
+			init: function () {
+				var $this = this;
+				axios.get('food').then(function (response) {
+					console.log($this.products);
+					response.data.forEach(function (p) {
+						$this.products.push(p);
+					});
+				}).catch(function (error) {
+					console.log(error);
+				});
+			},
 			showHelloMsg : function () {
 				var $this = this;
 				axios.post('home/action1', this.msg, {
 					headers:{
-				        'Content-type': 'text/plain'
+				        'Content-Type': 'text/plain'
 				    }
 				}).then(function (response) {
 				    console.log(response);
@@ -60,13 +41,18 @@
 				    $this.helloMsg = 'error';
 				});
 			}
+		},
+		created : function () {
+			console.log('init');
+			this.init();
+		},
+		updated: function () {
+			// This will enable the data attributes of the bootstrap javascript functionality.
+			if (BSN) {
+				BSN.initCallback();
+			}
 		}
 	});
 
-	// This will enable the data attributes of the bootstrap javascript functionality.
-	if (BSN) {
-		BSN.initCallback();
-	}
-	
 	return indexVm;
 }));

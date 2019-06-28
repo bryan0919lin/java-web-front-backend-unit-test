@@ -29,7 +29,7 @@
 	                  <i class="fas fa-plus fa-3x"></i>\
 	                </div>\
 	              </div>\
-	              <img class="img-fluid" v-bind:src="product.img" alt="">\
+	              <img class="img-fluid" v-bind:src="product.imgUrl" alt="">\
 	            </div>\
 				<div class="portfolio-modal modal fade" v-bind:id="\'productModal\' + product.id" tabindex="-1" role="dialog" aria-labelledby="portfolioModal1Label" aria-hidden="true">\
 		          <div class="modal-dialog modal-xl" role="document">\

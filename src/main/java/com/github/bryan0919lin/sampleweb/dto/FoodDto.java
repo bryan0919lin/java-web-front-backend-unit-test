@@ -5,65 +5,65 @@ import java.util.Date;
 
 public class FoodDto implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private Long id;
-	
-	private String imgUrl;
-	
-	private String title;
-	
-	private String detail;
-	
-	private Date createTime;
-	
-	private Date updateTime;
+    private Long id;
 
-	public Long getId() {
-		return id;
-	}
+    private String imgUrl;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    private String title;
 
-	public String getImgUrl() {
-		return imgUrl;
-	}
+    private String detail;
 
-	public void setImgUrl(String imgUrl) {
-		this.imgUrl = imgUrl;
-	}
+    private Date createTime;
 
-	public String getTitle() {
-		return title;
-	}
+    private Date updateTime;
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public String getDetail() {
-		return detail;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setDetail(String detail) {
-		this.detail = detail;
-	}
+    public String getImgUrl() {
+        return imgUrl;
+    }
 
-	public Date getCreateTime() {
-		return createTime;
-	}
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
 
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public Date getUpdateTime() {
-		return updateTime;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
-	}
+    public String getDetail() {
+        return detail;
+    }
+
+    public void setDetail(String detail) {
+        this.detail = detail;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
 }

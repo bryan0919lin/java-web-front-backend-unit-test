@@ -16,110 +16,110 @@ import javax.persistence.TemporalType;
 
 @Entity
 @NamedQueries({
-	@NamedQuery(name = "Food.findAll", query = "from Food")
+    @NamedQuery(name = "Food.findAll", query = "from Food")
 })
 public class Food implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
-	private Long id;
-	
-	@Column(name = "ImgUrl")
-	private String imgUrl;
-	
-	@Column(name = "Title")
-	private String title;
+    private static final long serialVersionUID = 1L;
 
-	@Lob
-	@Column(name = "Detail")
-	private String detail;
-	
-	@Column(name = "CreateTime")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date createTime;
-	
-	@Column(name = "UpdateTime")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date updateTime;
-	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
+    private Long id;
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Food other = (Food) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
-	
-	@Override
-	public String toString() {
-		return "Food [id=" + id + "]";
-	}
+    @Column(name = "ImgUrl")
+    private String imgUrl;
 
-	public Long getId() {
-		return id;
-	}
+    @Column(name = "Title")
+    private String title;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    @Lob
+    @Column(name = "Detail")
+    private String detail;
 
-	public String getImgUrl() {
-		return imgUrl;
-	}
+    @Column(name = "CreateTime")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createTime;
 
-	public void setImgUrl(String imgUrl) {
-		this.imgUrl = imgUrl;
-	}
+    @Column(name = "UpdateTime")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateTime;
 
-	public String getTitle() {
-		return title;
-	}
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        return result;
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Food other = (Food) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        return true;
+    }
 
-	public String getDetail() {
-		return detail;
-	}
+    @Override
+    public String toString() {
+        return "Food [id=" + id + "]";
+    }
 
-	public void setDetail(String detail) {
-		this.detail = detail;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public Date getCreateTime() {
-		return createTime;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
+    public String getImgUrl() {
+        return imgUrl;
+    }
 
-	public Date getUpdateTime() {
-		return updateTime;
-	}
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
 
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
-	}
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDetail() {
+        return detail;
+    }
+
+    public void setDetail(String detail) {
+        this.detail = detail;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
 }

@@ -15,35 +15,35 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 @Configuration
 public class DbConfig {
 
-	@Bean
-	public DataSource getDataSource() {
-		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName("org.mariadb.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/sample?useUnicode=yes&characterEncoding=UTF-8");
-		dataSource.setUsername("root");
-		dataSource.setPassword("zaq12wsx");
-		return dataSource;
-	}
-	
-	@Bean
-	public EntityManagerFactory getEntityManagerFactory() {
-		LocalContainerEntityManagerFactoryBean factory = 
-				new LocalContainerEntityManagerFactoryBean();
-		factory.setDataSource(getDataSource());
-		factory.setPackagesToScan("com.github.bryan0919lin.sampleweb.model");
-		factory.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-		
-		Properties jpaProperties = new Properties();
-		jpaProperties.put("hibernate.hbm2ddl.auto", "validate");
-		jpaProperties.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
-		factory.setJpaProperties(jpaProperties);
-		
-		factory.afterPropertiesSet();
-		return factory.getObject();
-	}
-	
-	@Bean
-	public JpaTransactionManager getTransactionManager() {
-		return new JpaTransactionManager(getEntityManagerFactory());
-	}
+    @Bean
+    public DataSource getDataSource() {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName("org.mariadb.jdbc.Driver");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/sample?useUnicode=yes&characterEncoding=UTF-8");
+        dataSource.setUsername("root");
+        dataSource.setPassword("zaq12wsx");
+        return dataSource;
+    }
+
+    @Bean
+    public EntityManagerFactory getEntityManagerFactory() {
+        LocalContainerEntityManagerFactoryBean factory =
+                new LocalContainerEntityManagerFactoryBean();
+        factory.setDataSource(getDataSource());
+        factory.setPackagesToScan("com.github.bryan0919lin.sampleweb.model");
+        factory.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+
+        Properties jpaProperties = new Properties();
+        jpaProperties.put("hibernate.hbm2ddl.auto", "validate");
+        jpaProperties.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+        factory.setJpaProperties(jpaProperties);
+
+        factory.afterPropertiesSet();
+        return factory.getObject();
+    }
+
+    @Bean
+    public JpaTransactionManager getTransactionManager() {
+        return new JpaTransactionManager(getEntityManagerFactory());
+    }
 }

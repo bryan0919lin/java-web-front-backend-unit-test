@@ -18,11 +18,15 @@
   <!-- Theme CSS -->
   <link href="css/main.min.css" rel="stylesheet">
 
+  <style>
+  [v-cloak] { display: none }
+  </style>
+
   <script type="text/javascript" src="require.min.js"></script>
   <script type="text/javascript">
   require.config({
-	  baseUrl: 'js',
-	  paths: {
+      baseUrl: 'js',
+      paths: {
           vue: [
               'lib/vue.min'
           ],
@@ -36,13 +40,13 @@
   });
 
   require(['index'], function (indexVm) {
-	  console.log(indexVm);
-  });	
+      console.log(indexVm);
+  });
   </script>
 </head>
 
 <body id="page-top">
-<div id="index">
+<div id="index" v-cloak>
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
     <div class="container">
@@ -62,9 +66,11 @@
           <li class="nav-item mx-0 mx-lg-1">
             <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">Contact</a>
           </li>
-          <li>
+          <li v-if="checkLogin()">
             <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#" data-toggle="modal" data-target="#add"><i class="fas fa-plus"></i></a>
-            
+          </li>
+          <li v-if="!checkLogin()">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#" data-toggle="modal" data-target="#login"><i class="fas fa-sign-in-alt"></i></a>
           </li>
         </ul>
       </div>
@@ -76,7 +82,7 @@
       <div class="modal-content">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">
-            <i class="fas fa-times"></i>
+            <i class="fas fa-times" data-dismiss="modal" aria-label="Close"></i>
           </span>
         </button>
         <div class="modal-body text-center">
@@ -105,6 +111,48 @@
       </div>
     </div>
   </div>
+  
+  <div class="portfolio-modal modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="portfolioModal1Label" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            <i class="fas fa-times" data-dismiss="modal" aria-label="Close"></i>
+          </span>
+        </button>
+        <div class="modal-body text-center">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-8 mx-auto">
+                <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
+                <form novalidate="novalidate">
+                  <div class="control-group">
+                    <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                      <label>Username</label>
+                      <input class="form-control" type="text" placeholder="Username">
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                      <label>Password</label>
+                      <input class="form-control" type="password" placeholder="Password">
+                    </div>
+                  </div>
+            
+                  <br>
+                  <div id="success"></div>
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-xl" id="sendMessageButton">Sign In</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
   <!-- Masthead -->
   <header class="masthead bg-primary text-white text-center">
     <div class="container d-flex align-items-center flex-column">

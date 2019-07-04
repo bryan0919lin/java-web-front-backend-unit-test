@@ -10,6 +10,7 @@
     }
 })((function (Vue, components, axios, BootstrapNative) {
     components();
+    var loginTokenCookieName = 'loginToken';
     var indexVm = new Vue({
         el : '#index',
         data : {
@@ -18,7 +19,7 @@
                 title: null,
                 detail: null
             },
-            title: '',
+            editable: false,
             products: []
         },
         methods : {
@@ -31,11 +32,32 @@
                 $this.newFood.detail = '';
 
                 var createFoodModal = document.getElementById('add');
+                var loginModal = document.getElementById('login');
                 createFoodModal.addEventListener('show.bs.modal', function (event) {
                     // Reset the form data
                     $this.newFood.title = '';
                     $this.newFood.imgUrl = '';
                     $this.newFood.detail = '';
+                }, false);
+
+                createFoodModal.addEventListener('shown.bs.modal', function (event) {
+                    var loginToken = $this.getCookie(loginTokenCookieName);
+                    if (!loginToken) {
+                        new BootstrapNative.Modal(loginModal).show();
+                    } else {
+                        axios.get('login/status', {
+                            params: {},
+                            headers: {
+                                'Authorization': 'Bearer ' + loginToken
+                            } 
+                        }).then(function (response) {
+                            if (!response.data) {
+                                new BootstrapNative.Modal(loginModal).show();
+                            }
+                        }).catch(function (error) {
+                            new BootstrapNative.Modal(loginModal).show();
+                        });
+                    }
                 }, false);
                 
                 $this.getAllFoods();
@@ -50,6 +72,29 @@
                 }).catch(function (error) {
                     console.log(error);
                 });
+            },
+            checkLogin: function () {
+                var $this = this;
+                return !!$this.getCookie(loginTokenCookieName);
+            },
+            setCookie: function (name, value, days) {
+                var expires = "";
+                if (days) {
+                    var date = new Date();
+                    date.setTime(date.getTime() + (days*24*60*60*1000));
+                    expires = "; expires=" + date.toUTCString();
+                }
+                document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+            },
+            getCookie: function (name) {
+                var nameEQ = name + "=";
+                var ca = document.cookie.split(';');
+                for(var i=0;i < ca.length;i++) {
+                    var c = ca[i];
+                    while (c.charAt(0)==' ') c = c.substring(1,c.length);
+                    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+                }
+                return null;
             },
             addFood: function () {
                 var $this = this;

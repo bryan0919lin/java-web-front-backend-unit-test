@@ -26,7 +26,7 @@
                 <div class="portfolio-item mx-auto" data-toggle="modal" v-bind:data-target="\'#productModal\' + product.id">\
                   <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">\
                     <div class="portfolio-item-caption-content text-center text-white">\
-                      <i class="fas fa-plus fa-3x"></i>\
+                      <i class="fas fa-plus fa-3x" data-toggle="modal" v-bind:data-target="\'#productModal\' + product.id"></i>\
                     </div>\
                   </div>\
                   <img class="img-fluid" v-bind:src="product.imgUrl" alt="">\
@@ -36,7 +36,7 @@
                     <div class="modal-content">\
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">\
                         <span aria-hidden="true">\
-                          <i class="fas fa-times"></i>\
+                          <i class="fas fa-times" data-dismiss="modal" aria-label="Close"></i>\
                         </span>\
                       </button>\
                       <div class="modal-body text-center">\

@@ -72,6 +72,8 @@ dependencies {
     
     compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.2.0'
 
+    compile 'com.auth0:java-jwt:3.2.0'
+
     testCompile 'junit:junit:4.12'
     testCompile "org.springframework:spring-test:${springVersion}"
     testCompile group: 'com.h2database', name: 'h2', version: '1.4.196'

@@ -39,6 +39,7 @@ public class LoginController {
             String token = request.getHeader("Authorization").split(" ")[1];
             return userService.checkLogin(token);
         } catch (RuntimeException | UnsupportedEncodingException e) {
+            e.printStackTrace();
             return false;
         }
     }

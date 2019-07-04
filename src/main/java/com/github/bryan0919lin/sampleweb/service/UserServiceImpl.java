@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
     public String login(LoginDto dto) throws IllegalArgumentException, JWTCreationException, UnsupportedEncodingException {
         if ("bryan.lin".equals(dto.getUsername())
                 && "1qaz@wsx".equals(dto.getPassword())) {
-            ZoneOffset offset = ZoneOffset.of("+08:00");
+            ZoneOffset offset = ZoneOffset.of("+00:00");
             return JWT.create()
                     .withClaim("username", dto.getUsername())
                     .withIssuedAt(Date.from(LocalDateTime.now().toInstant(offset)))

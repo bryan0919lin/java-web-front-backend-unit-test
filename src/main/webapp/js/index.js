@@ -14,6 +14,10 @@
     var indexVm = new Vue({
         el : '#index',
         data : {
+            loginForm: {
+                username: null,
+                password: null
+            },
             newFood: {
                 imgUrl: null,
                 title: null,
@@ -61,6 +65,32 @@
                 }, false);
                 
                 $this.getAllFoods();
+            },
+            login: function () {
+                var $this = this;
+                axios.post('login', $this.loginForm).then(function (response) {
+                    console.log(response);
+                    if (!response.data) {
+                        alert('Login failed!');
+                    } else {
+                        $this.setCookie(loginTokenCookieName, response.data);
+                        $this.$forceUpdate();
+                        
+                        $this.loginForm.username = '';
+                        $this.loginForm.password = '';
+                        
+                        var loginModal = document.getElementById('login');
+                        new BootstrapNative.Modal(loginModal).hide();
+                    }
+                }).catch(function (error) {
+                    console.log(error);
+                    alert('Login failed!');
+                });
+            },
+            logout: function () {
+                var $this = this;
+                $this.setCookie(loginTokenCookieName, null);
+                $this.$forceUpdate();
             },
             getAllFoods: function () {
                 var $this = this;
